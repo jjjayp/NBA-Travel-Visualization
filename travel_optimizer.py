@@ -5,11 +5,10 @@ from nba_arena_data import load_arena_data, NBA_ARENAS
 
 def haversine(lat1, lon1, lat2, lon2):
     """
-    Compute the great-circle distance between two points 
-    on Earth specified in decimal degrees.
+    Compute the great-circle distance between two points on Earth specified in degrees.
     Returns the distance in miles.
     """
-    R = 6371.0  # Earth's radius in kilometers
+    R = 6371.0 # Earth's radius
     phi1 = math.radians(lat1)
     phi2 = math.radians(lat2)
     delta_phi = math.radians(lat2 - lat1)
@@ -23,9 +22,8 @@ def haversine(lat1, lon1, lat2, lon2):
 def build_nba_graph():
     """
     Build and return a Graph of NBA arenas.
-    Vertices are team names; edges are weighted by the distance (miles)
-    between arenas based on their geographic coordinates.
-    Here, we build a complete graph connecting every pair.
+    Vertices are team names; edges are weighted by the distance between arenas based on their geographic coordinates.
+    Build a complete graph connecting every pair.
     """
     arena_data = load_arena_data()
     teams = list(arena_data.keys())
@@ -47,20 +45,12 @@ def get_optimal_route(graph, start_team, end_team, algorithm='shortest'):
     """
     Get the optimal travel route between two NBA teams.
     
-    Parameters:
-      - graph: Graph instance.
-      - start_team: Starting team's name.
-      - end_team: Destination team's name.
-      - algorithm: 'shortest' for minimum distance (Dijkstra), 
-                   'fewest' for fewest flights (BFS).
-    
     Returns:
       - path: A list of teams representing the route.
       - details: The dictionary returned from the respective traversal method.
     """
     if algorithm == 'shortest':
         result = graph.shortest_path(start_team)
-        # Reconstruct path using predecessor information.
         pred = {v: info[0] for v, info in result.items()}
     elif algorithm == 'fewest':
         result = graph.fewest_flights(start_team)
