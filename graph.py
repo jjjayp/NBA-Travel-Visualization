@@ -84,9 +84,8 @@ class Graph:
 
     def minimum_salt(self, city):
         """
-        Uses Prim's algorithm to compute the Minimum Spanning Tree (MST)
-        starting from the source city. The MST minimizes the total miles used
-        (or "salt" in a winter roads analogy).
+        Uses Prim's algorithm to compute the Minimum Spanning Tree
+        starting from the source city. The MST minimizes the total miles used.
         
         Returns a tuple:
          - path_tree: dict with key = (u, v) edge and value = weight of that edge.
