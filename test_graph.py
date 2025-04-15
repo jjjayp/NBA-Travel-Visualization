@@ -3,7 +3,7 @@ from graph import Graph
 
 class TestGraph(unittest.TestCase):
     def setUp(self):
-        # Create a simple test graph.
+        # Create a test graph.
         self.g = Graph(V=("A", "B", "C", "D", "E"),
                        E=[("A", "B", 100),
                           ("B", "C", 200),
